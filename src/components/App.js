@@ -15,11 +15,20 @@ function App(props) {
   return (
     <div className="App">
       <h2>Test</h2>
-      
-      {displayCategories}
+      <div style={styles.categoriesContainer}>
+        {displayCategories}
+      </div>
 
     </div>
   );
+}
+
+const styles = {
+  categoriesContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginRight: 8
+  }
 }
 
 const mapStateToProps = state => ({
