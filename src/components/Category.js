@@ -5,7 +5,7 @@ const Category = ({title, jobs}) => { // we use this to pass down the prop
     
     const displayJobs = jobs.map((job, index) => {
         return (
-            <JobCard title={job.title} name={job.name}/>
+            <JobCard title={job.title} name={job.name} key={job.id}/>
         )
     })
 

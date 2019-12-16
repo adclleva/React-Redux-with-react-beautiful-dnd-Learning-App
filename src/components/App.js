@@ -8,7 +8,7 @@ function App(props) {
 
   const displayCategories = categories.map((category, index) => {
     return (
-      <Category title={category.title} jobs={category.jobs}/>
+      <Category title={category.title} jobs={category.jobs} key={category.id}/>
     )
   })
 
