@@ -4,9 +4,10 @@ import {Droppable} from "react-beautiful-dnd"
 
 const Category = ({title, jobs, categoryId}) => { // we use this to pass down the prop
     
+    // the index is important 
     const displayJobs = jobs.map((job, index) => {
         return (
-            <JobCard title={job.title} name={job.name} key={job.id} jobId={job.id}/>
+            <JobCard title={job.title} name={job.name} key={job.id} jobId={job.id} index={index}/>
         )
     })
 
