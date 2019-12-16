@@ -1,20 +1,26 @@
 import React from "react"
 import JobCard from "./JobCard"
+import {Droppable} from "react-beautiful-dnd"
 
-const Category = ({title, jobs}) => { // we use this to pass down the prop
+const Category = ({title, jobs, categoryId}) => { // we use this to pass down the prop
     
+    // the index is important 
     const displayJobs = jobs.map((job, index) => {
         return (
-            <JobCard title={job.title} name={job.name}/>
+            <JobCard title={job.title} name={job.name} key={job.id} jobId={job.id} index={index}/>
         )
     })
 
     return (
-        <div style={style.container}>
-            <h3>{title}</h3>
-            {displayJobs}
-
-        </div>
+        <Droppable droppableId={String(categoryId)}>
+            {provided => (
+                <div {...provided.droppableProps} ref={provided.innerRef} style={style.container}>
+                    <h3>{title}</h3>
+                    {displayJobs}
+                    {provided.placeholder}
+                </div>
+            )}
+        </Droppable>
     )
 }
 
