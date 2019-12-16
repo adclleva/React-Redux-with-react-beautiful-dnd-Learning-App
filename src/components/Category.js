@@ -1,11 +1,12 @@
 import React from "react"
 import JobCard from "./JobCard"
+import CategoriesActionButton from "./CategoriesActionButton"
 
 const Category = ({title, jobs}) => { // we use this to pass down the prop
     
     const displayJobs = jobs.map((job, index) => {
         return (
-            <JobCard title={job.title} name={job.name}/>
+            <JobCard key={job.id} title={job.title} name={job.name}/>
         )
     })
 
@@ -13,6 +14,8 @@ const Category = ({title, jobs}) => { // we use this to pass down the prop
         <div style={style.container}>
             <h3>{title}</h3>
             {displayJobs}
+            <CategoriesActionButton category
+            />
 
         </div>
     )
@@ -20,7 +23,7 @@ const Category = ({title, jobs}) => { // we use this to pass down the prop
 
 const style ={
     container: {
-        backgroundColor: "#ccc",
+        backgroundColor: "#dfe3e6",
         borderRadius: 3,
         width: 300,
         padding: 8,

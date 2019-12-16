@@ -1,14 +1,14 @@
 import React from 'react';
 import Category from "./Category"
 import { connect } from "react-redux" // this connects the redux to our react
-import JobCard from './JobCard';
+
 
 function App(props) {
   const { categories } = props
 
   const displayCategories = categories.map((category, index) => {
     return (
-      <Category title={category.title} jobs={category.jobs}/>
+      <Category title={category.title} jobs={category.jobs} key={category.id}/>
     )
   })
 
