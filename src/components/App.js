@@ -2,24 +2,30 @@ import React from 'react';
 import Category from "./Category"
 import { connect } from "react-redux" // this connects the redux to our react
 import JobCard from './JobCard';
+import {DragDropContext} from "react-beautiful-dnd"
 
 function App(props) {
   const { categories } = props
 
   const displayCategories = categories.map((category, index) => {
     return (
-      <Category title={category.title} jobs={category.jobs} key={category.id}/>
+      <Category title={category.title} jobs={category.jobs} key={category.id} categoryId={category.id}/>
     )
   })
 
-  return (
-    <div className="App">
-      <h2>Test</h2>
-      <div style={styles.categoriesContainer}>
-        {displayCategories}
-      </div>
+  function onDragEnd() {
+    // TODO reording logic
+  }
 
-    </div>
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="App">
+        <h2>Test</h2>
+        <div style={styles.categoriesContainer}>
+          {displayCategories}
+        </div>
+      </div>
+    </DragDropContext>
   );
 }
 
