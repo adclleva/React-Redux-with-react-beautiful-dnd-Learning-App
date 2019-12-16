@@ -19,7 +19,7 @@ const initialState = [
     },
     {
         title: "Applied",
-        id: "category-12",
+        id: "category-2",
         jobs: [
             {
                 name: "Netflix",
@@ -47,10 +47,10 @@ const categoriesReducer = (state = initialState, action) => {
             } = action.payload
 
             const newState = [...state]
-
-            if (droppableIdStart === droppableIdEnd) { // this means that if it happens in the same categories section
+            
+            // this means that if it happens in the same categories section
+            if (droppableIdStart === droppableIdEnd) { 
                 const category = state.find(category => {
-                    console.log(category, "category")
                     return droppableIdStart === category.id
 
                 })
@@ -58,6 +58,25 @@ const categoriesReducer = (state = initialState, action) => {
                 const job = category.jobs.splice(droppableIndexStart, 1)
                 category.jobs.splice(droppableIndexEnd, 0, ...job)
             } 
+
+            // this is if the droppable goes to a different list
+            if (droppableIdStart !== droppableIndexEnd) {
+                // get the category where the drag ocurrs
+                const categoryStart = state.find(category => {
+                    return droppableIdStart == category.id
+                }) 
+
+                // we get the job from the category section
+                const job = categoryStart.jobs.splice(droppableIdStart, 1)
+                
+                // get the category where the drag ended
+                const categoryEnd = state.find(category => {
+                    return droppableIdEnd === category.id
+                })
+
+                // we put the job in the new category
+                categoryEnd.jobs.splice(droppableIndexEnd, 0, ...job)
+            }
             return newState
         }
 
